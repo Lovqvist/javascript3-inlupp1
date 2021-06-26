@@ -1,14 +1,21 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+// import { useState} from 'react'
+import { useEffect } from 'react'
+import { useSelector, useDispatch} from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import ShoppingCartProduct from '../components/shoppingCart/ShoppingCartProduct'
+import { clearOrder, placeOrder } from '../store/actions/userOrderAction'
+import { useHistory } from 'react-router-dom'
 
 const CheckOut = () => {
+
+    const dispatch = useDispatch();
 
     const shoppingCart = useSelector(state => state.cart.shoppingCart )
     const totalCartAmount = useSelector(state => state.cart.totalCartAmount)
     const getTotalQuantity = useSelector(state => state.cart.totalCartQuantity)
     const loggedIn = useSelector(state => state.auth.userEmail);
+    const history = useHistory();
+    
 
     const empty = (
         <div>
@@ -18,6 +25,22 @@ const CheckOut = () => {
             <div className="dropdown-divider"></div>
         </div>
                     )
+
+   
+
+    const createOrder = (e) => {
+        e.preventDefault()
+        
+        dispatch(placeOrder({
+            cart : shoppingCart,
+            email : loggedIn,
+            price : totalCartAmount
+
+        })
+        
+        )
+        history.push('/checkout/orderconfirm')
+    }
 
     return (
         <div className="container">
@@ -56,7 +79,7 @@ const CheckOut = () => {
                             : <> 
                             { !loggedIn
                                 ? <button className="btn btn-grey" disabled >Logga in för att lägga order</button>
-                                : <button className="btn btn-grey" >  Lägg order </button>
+                                : <button className="btn btn-grey" onClick={createOrder}>  Lägg order </button>
                             } 
                             </>
                         }   
