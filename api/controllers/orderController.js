@@ -2,9 +2,10 @@ const router = require('express').Router();
 const orderModel = require('../models/orders/orderModel')
 // const auth = require('../authentication/auth');
 
-router.post('/', orderModel.createOrder);
+router.post('/new', orderModel.createOrder);
 
-router.get('/:email', orderModel.getOrders)
+router.get('/:email', orderModel.getOrder)
+router.get('/', orderModel.getAllOrders)
 
 
 module.exports = router;

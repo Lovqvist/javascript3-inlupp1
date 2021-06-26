@@ -21,8 +21,25 @@ nav {
 }
 
 .active-link {
-  
-  
+  font-weight: bold;
+}
+
+.active-link:hover {
+  color: black !important;
+}
+
+.image-width {
+ width: 70px;
+}
+
+.click {
+  user-select: none;
+  cursor: pointer;
+}
+
+.card-product:hover {
+  box-shadow: 2px 2px 10px 0 grey;
+  transition: 0.10s
 }
 
 @media (min-width: 992px) {

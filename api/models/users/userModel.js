@@ -3,6 +3,28 @@ const User = require('../users/userSchema');
 const bcrypt = require('bcrypt');
 const auth = require('../../authentication/auth')
 
+exports.getOneUser = (req, res) => {
+                                                                           
+    User.findOne({email: req.params.email})                 
+        .then(data => res.status(200).json(data))
+        .catch(err => res.status(500).json({
+            statusCode: 500,
+            status: false,
+            message: err.message || 'Something went wrong when fetching the user'
+        }))
+} 
+
+exports.getAllUsers = (req, res) => {
+                                                                           
+    User.find()                 
+        .then(data => res.status(200).json(data))
+        .catch(err => res.status(500).json({
+            statusCode: 500,
+            status: false,
+            message: err.message || 'Something went wrong when fetching the user'
+        }))
+} 
+
 
 exports.registerUser = (req, res) => {
 
