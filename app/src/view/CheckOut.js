@@ -32,7 +32,7 @@ const CheckOut = () => {
         e.preventDefault()
         
         dispatch(placeOrder({
-            cart : shoppingCart,
+            list : shoppingCart,
             email : loggedIn,
             price : totalCartAmount
 

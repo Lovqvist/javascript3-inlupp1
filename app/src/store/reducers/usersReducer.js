@@ -15,6 +15,7 @@ const usersReducer = (state = initState, action) => {
           loading: true
         }
   
+      
       case actiontypes().users.success:
         return {
           ...state,

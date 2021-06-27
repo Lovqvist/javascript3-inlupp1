@@ -5,6 +5,7 @@ export const getUsers  = () => {
     return dispatch => {
         dispatch(loading())
         axios.get('http://localhost:8888/api/users')
+        
         .then(res => {
             dispatch(success(res.data))
         })
@@ -14,6 +15,8 @@ export const getUsers  = () => {
     }
 }
 
+
+
 export const loading = () => {
     return {
       type: actiontypes().users.loading
@@ -21,6 +24,7 @@ export const loading = () => {
   }
   
   export const success = (users) => {
+    console.log(users)
     return {
       type: actiontypes().users.success,
       payload: users

@@ -1,11 +1,11 @@
 import actiontypes from "../actiontypes";
 
 const initState = {
-    userEmail: 'admin@email.com',
+    userEmail: '',
     loading: false,
     error: undefined,
     admin: false,
-    // isAuthenticated: true
+    
 }
 
 const authReducer = (state = initState, action) => {
@@ -32,6 +32,12 @@ const authReducer = (state = initState, action) => {
                  loading: false,
                  error: action.payload
              }   
+
+        case actiontypes().auth.update:
+            return{
+            ...state,
+            admin: action.payload.admin
+            }       
         
         case actiontypes().auth.logout:
                return {

@@ -1,20 +1,25 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const OrderCard = ({order}) => {
     
     const admin = useSelector(state => state.auth.admin);
     // const orderStatus = useSelector (state => state.userOrder.completed);
-    
-    
+    let history = useHistory()
+    const dispatch = useDispatch()
     const created = order.created.split('T')
     const date = created[0]
     const time = (created[1].split('.'))[0]
     const list = order.list
 
-
+    console.log(list)
    
+    // const updateOrder = () => {
+    //     dispatch(updateUserOrder(list._id, list))  
+    //     history.push('/orders')  
+    //  }
+
     return (
         <div className="row py-3 m-auto border-bottom align-items-center">
             <div className="col">{date} {time}</div>
@@ -23,8 +28,8 @@ const OrderCard = ({order}) => {
             {
              list && list.map(product => (
                   
-                    <div key={product.product._id}>
-                        {product.quantity}st {product.product.name}  
+                    <div key={product._id}>
+                        {product.quantity}st {product.name}  
                     </div>
                  
                  
@@ -35,15 +40,15 @@ const OrderCard = ({order}) => {
             <div className="col">
                 { admin 
                 ?   <>
-                { order.completed
-                    ?<button className="btn bg-success" >Skickad</button> 
-                    :<button className="btn" >Plockas</button> 
-                }
+                {/* { order.completed
+                    ?<button className="btn bg-success" onClick={updateOrder} >Skickad</button> 
+                    :<button className="btn" onClick={updateOrder} >Order skapad</button> 
+                } */}
                     </> 
                 :   <>
                 { order.completed
                     ?<p className="" >Skickad</p> 
-                    :<p className="" >Plockas</p> 
+                    :<p className="" >Order skapad</p> 
                 }
                     </> 
                 }

@@ -11,7 +11,7 @@ export const getUserOrders = email => {
 }
 
 export const setUserOrder = order => {
-    // console.log(order)
+    console.log(order)
     return {
         type: actiontypes().userOrder.set,
         payload: order
@@ -19,18 +19,18 @@ export const setUserOrder = order => {
     }
 }
 
-export const placeOrder = ({cart, email, price}) => {
+export const placeOrder = ({list, email, price}) => {
     return dispatch => {
         dispatch(loading())
-        axios.post('http://localhost:8888/api/order/new', {cart, email, price})
-        console.log(cart)
-        console.log(email)
-        console.log(price)
+        axios.post('http://localhost:8888/api/order/new', {list, email, price})
+        // console.log(list)
+        // console.log(email)
+        // console.log(price)
         
             return {
       
                 type: actiontypes().userOrder.add,
-                payload: {cart, email, price}
+                payload: {list, email, price}
               }
        
     }

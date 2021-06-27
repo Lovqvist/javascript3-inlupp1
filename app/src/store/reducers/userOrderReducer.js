@@ -2,7 +2,7 @@ import actiontypes from "../actiontypes";
 
 const initState = {
     order: null,
-    cart: [],
+    list: [],
     email: null,
     price: null,
     completed: null,
@@ -20,11 +20,12 @@ const userOrderReducer = (state = initState, action) => {
             return {
                     ...state,
                     order: action.payload
+                    
             }
         case actiontypes().userOrder.add:
             return{
                 ...state,
-                cart: action.payload.cart,
+                list: action.payload.list,
                 email: action.payload.email,
                 price: action.payload.price,
             }    
@@ -33,7 +34,7 @@ const userOrderReducer = (state = initState, action) => {
             return {
                 ...state,
                 order: null,
-                cart: [],
+                list: [],
                 email: null,
                 price: null,
                 completed: false,
