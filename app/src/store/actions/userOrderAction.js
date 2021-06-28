@@ -31,8 +31,16 @@ export const placeOrder = ({list, email, price}) => {
       
                 type: actiontypes().userOrder.add,
                 payload: {list, email, price}
-              }
-       
+            }
+    }
+}
+
+export const updateUserOrder = (id, order) => {
+    return dispatch => {
+        dispatch(loading())
+        order.completed = !order.completed
+        axios.patch(`http://localhost:8888/api/order/${id}`, order)
+        dispatch(updateOrder(order.completed))
     }
 }
 
@@ -54,5 +62,12 @@ export const loading = () => {
     return {
       type: actiontypes().userOrder.failure,
       payload: error
+    }
+  }
+
+  export const updateOrder = (completed) => {
+    return {
+      type: actiontypes().userOrder.update,
+      payload: completed
     }
   }

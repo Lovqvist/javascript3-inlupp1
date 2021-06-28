@@ -28,7 +28,13 @@ const userOrderReducer = (state = initState, action) => {
                 list: action.payload.list,
                 email: action.payload.email,
                 price: action.payload.price,
-            }    
+            }   
+        
+        case actiontypes().userOrder.update:
+        return{
+        ...state,
+        completed: action.payload.completed
+        }     
         
         case actiontypes().userOrder.clear:
             return {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { updateUserOrder } from '../../store/actions/userOrderAction'
 
 const OrderCard = ({order}) => {
     
@@ -13,12 +14,13 @@ const OrderCard = ({order}) => {
     const time = (created[1].split('.'))[0]
     const list = order.list
 
-    console.log(list)
+    
    
-    // const updateOrder = () => {
-    //     dispatch(updateUserOrder(list._id, list))  
-    //     history.push('/orders')  
-    //  }
+    const updateOrder = () => {
+        dispatch(updateUserOrder(order._id, order))  
+        console.log(order._id)
+        history.push('/orders')  
+     }
 
     return (
         <div className="row py-3 m-auto border-bottom align-items-center">
@@ -40,10 +42,10 @@ const OrderCard = ({order}) => {
             <div className="col">
                 { admin 
                 ?   <>
-                {/* { order.completed
+                { order.completed
                     ?<button className="btn bg-success" onClick={updateOrder} >Skickad</button> 
                     :<button className="btn" onClick={updateOrder} >Order skapad</button> 
-                } */}
+                }
                     </> 
                 :   <>
                 { order.completed

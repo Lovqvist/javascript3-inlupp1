@@ -23,6 +23,7 @@ const actiontypes = () => {
         userOrder: {
             set:    'GET_USER_ORDER',
             add:    'ADD_USER_ORDER',
+            update: 'UPDATE_ORDER',
             clear:  'ORDER_CLEAR',
             loading:'LOADNING_ORDER'
         },

@@ -28,6 +28,8 @@ const ordersReducer = (state = initState, action) => {
           loading: false,
           error: action.payload
         }
+
+      
   
       default:
         return state

@@ -7,5 +7,7 @@ router.post('/new', orderModel.createOrder);
 router.get('/:email', orderModel.getOrder)
 router.get('/', orderModel.getAllOrders)
 
+router.patch('/:id', orderModel.updateOrder)
+
 
 module.exports = router;
