@@ -160,3 +160,41 @@ exports.updateUser = (req, res) => {
         }
     })
 }
+
+exports.deleteUser = (req, res) => {
+    User.exists({email: req.params.email}, (err, result) => {
+        if(err) {                                                                               // Fel som kommer om vi använder för få tecken i id
+            return res.status(400).json({
+                statusCode: 400,
+                status: false,
+                message: 'You made a bad request'
+            })
+        }
+
+        if(result) {
+            User.deleteOne({email: req.params.email})
+            .then(() => {
+                res.status(200).json({
+                    statusCode: 200,
+                    status: true,
+                    message: 'User deleted',
+                    
+                })
+            })
+            .catch((err) => {
+                res.status(500).json({
+                    statusCode: 500,
+                    status: false,
+                    message: 'Failed to delete user',
+                    err
+                })
+            })
+        } else {
+            res.status(404).json({
+                statusCode: 404,
+                status: false,
+                message: 'User does not exist'
+            })
+        }
+    })
+}

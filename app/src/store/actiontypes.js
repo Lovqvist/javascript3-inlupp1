@@ -4,8 +4,7 @@ const actiontypes = () => {
             loading: 'LOADING_AUTH',
             success: 'SUCCESS_AUTH',
             failure: 'FAILURE_AUTH',
-            logout:  'LOGOUT',
-            update: 'UPDATE_USER'
+            logout:  'LOGOUT'
         },
         products: {
             set:    'GET_PRODUCTS'
@@ -33,6 +32,14 @@ const actiontypes = () => {
             success:'SUCCESS_USERS',
             failure:'FAILURE_USERS'
             
+        },
+        user: {
+            getUser:  'USER_GET',
+            loading:  'USER_LOADING',
+            success:  'USER_SUCCESS',
+            failure:  'USER_FAILURE',
+            update:   'USER_UPDATE',
+            delete:   'USER_DELETE'
         },
         orders: {
             set:    'GET_ORDERS',

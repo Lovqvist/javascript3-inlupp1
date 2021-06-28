@@ -8,6 +8,7 @@ import userOrderReducer from './userOrderReducer'
 import authReducer from './authReducer'
 import usersReducer from './usersReducer'
 import ordersReducer from './ordersReducer'
+import userReducer from './userReducer'
 
 
 export default combineReducers({
@@ -17,6 +18,7 @@ export default combineReducers({
     cart: cartReducer,
     userOrder: userOrderReducer,
     users: usersReducer,
-    orders: ordersReducer
+    orders: ordersReducer,
+    user: userReducer
 
 })

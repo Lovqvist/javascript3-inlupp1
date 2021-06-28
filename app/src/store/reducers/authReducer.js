@@ -33,11 +33,11 @@ const authReducer = (state = initState, action) => {
                  error: action.payload
              }   
 
-        case actiontypes().auth.update:
-            return{
-            ...state,
-            admin: action.payload.admin
-            }       
+        // case actiontypes().auth.update:
+        //     return{
+        //     ...state,
+        //     admin: action.payload.admin
+        //     }       
         
         case actiontypes().auth.logout:
                return {

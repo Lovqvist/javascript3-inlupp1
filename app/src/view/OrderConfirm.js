@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { clearOrder } from '../store/actions/userOrderAction'
-import { useSelector } from 'react-redux'
+import { clearCart } from '../store/actions/cartActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 
 const OrderConfirm = () => {
+    const dispatch = useDispatch()
     const email = useSelector(state => state.auth.userEmail);
-    const totalCartAmount = useSelector(state => state.cart.totalCartAmount)
 
     useEffect(() => {
-
-    
-        clearOrder()
+       dispatch(clearCart())
         
-    })
+    }, [dispatch])
 
 
 

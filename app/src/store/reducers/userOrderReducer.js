@@ -36,15 +36,6 @@ const userOrderReducer = (state = initState, action) => {
         completed: action.payload.completed
         }     
         
-        case actiontypes().userOrder.clear:
-            return {
-                ...state,
-                order: null,
-                list: [],
-                email: null,
-                price: null,
-                completed: false,
-            }
         default:
             return state
     }

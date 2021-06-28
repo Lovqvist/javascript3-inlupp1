@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { updateUserAdmin } from '../../store/actions/authActions';
+import { updateUserAdmin } from '../../store/actions/userAction';
 import { useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 
 const UserCard = ({user}) => {
@@ -21,10 +22,14 @@ const UserCard = ({user}) => {
             <div className="col">{user.firstName} </div>
             <div className="col">{user.lastName} </div>
             <div className="col">{user.email} </div>
+            <div className="col ">
+            <Link to={`/users/change-user/${user.email}`}className="btn me-2">Redigera</Link>
             { !admin
-            ? <div className="col"><button className="btn" onClick={changeAdmin}>Kund</button> </div>
-            : <div className="col"><button className="btn" onClick={changeAdmin}>Admin</button> </div>
+            ? <button className="btn" onClick={changeAdmin}>Kund</button> 
+            : <button className="btn btn-success" onClick={changeAdmin}>Admin</button> 
             }
+            
+            </div>
         </div>
     )
 }

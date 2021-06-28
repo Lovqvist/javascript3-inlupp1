@@ -1,5 +1,3 @@
-// import { useState} from 'react'
-import { useEffect } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import ShoppingCartProduct from '../components/shoppingCart/ShoppingCartProduct'

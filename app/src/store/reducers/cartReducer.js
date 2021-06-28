@@ -34,6 +34,14 @@ const cartReducer = (state = initState, action) => {
           state.totalCartQuantity = getTotalQuantity(state.shoppingCart)
           return state;    
 
+        case actiontypes().cart.clear:
+          return {
+            ...state,
+            shoppingCart: [],
+            totalCartQuantity: 0,
+            totalCartAmount: 0
+          }
+
         default:
             return state
     }

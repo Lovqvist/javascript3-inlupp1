@@ -1,5 +1,6 @@
 import actiontypes from '../actiontypes';
 import axios from 'axios'
+import { getUsers } from './usersAction';
 
 
 
@@ -41,15 +42,16 @@ export const register = (user) => {
     }
 }
 
-
-export const updateUserAdmin = (email, user) => {
+export const addUser = (user) => {
   return dispatch => {
     dispatch(loading())
-    user.admin = !user.admin 
-    axios.patch(`http://localhost:8888/api/users/${email}`, user) 
-    dispatch(updateUser(user.admin)) 
+        axios.post('http://localhost:8888/api/users/register', user)
+        .then(() => {
+          dispatch(getUsers())
+        })
+        .catch(err => dispatch(failure(err.message)))
   }
-  }
+}
 
 
 
@@ -63,7 +65,7 @@ export const logout = () => {
 
 
 export const success = ({user, admin}) => {
-  console.log(user)
+  
   return {
     
     type: actiontypes().auth.success,
@@ -71,12 +73,7 @@ export const success = ({user, admin}) => {
   }
 }
 
-export const updateUser = (admin) => {
-  return {
-    type: actiontypes().auth.update,
-    payload: admin
-  }
-}
+
 
 
 export const loading = () => {

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUsers } from '../store/actions/usersAction'
 import UserCard from '../components/users/UserCard'
+import { Link } from 'react-router-dom'
 
 
 const Users = () => {
@@ -18,6 +19,7 @@ const Users = () => {
         <div className="container mt-3">
         <h2>Kunder</h2>
         <div className="mt-5 " >
+        <Link className="btn btn-primary mb-5" to="/users/add-user">Lägg till kund</Link>
             <div className="row font-weight-bold m-auto">
                 <div className="col">Förnamn</div>
                 <div className="col">Efternamn</div>

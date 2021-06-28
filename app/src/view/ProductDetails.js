@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { clearProduct, getOneProduct } from '../store/actions/productsAction'
 import { addToCart } from '../store/actions/cartActions'
+import { NavLink } from 'react-router-dom'
 
 
 const ProductDetails = () => {
@@ -42,7 +43,7 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <button to="/" className="btn mt-2" data-abc="true"> <i className="fa fa-chevron-left"></i> Tillbaka</button>
+            <NavLink exact to="/products" className="btn mt-2" data-abc="true"> <i className="fa fa-chevron-left"></i> Tillbaka</NavLink>
         </div>
         : <h3>Loading ...</h3>
         }       

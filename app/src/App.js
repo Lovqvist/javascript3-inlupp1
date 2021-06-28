@@ -10,11 +10,16 @@ import UserOrderHistory from './view/UserOrderHistory';
 import Orders from './view/Orders';
 import Users from './view/Users';
 import OrderConfirm from './view/OrderConfirm';
+import { ProtectedRoutesUser } from './routes/ProtectedRoutesUser'
+import { ProtectedRoutesAdmin } from './routes/ProtectedRoutesAdmin'
+import AddUser from './view/AddUser';
+import ChangeUser from './view/ChangeUser';
 
 
 
 
 function App() {
+
 
 
   return (
@@ -29,10 +34,12 @@ function App() {
            <Route exact path="/login" component={Login}/>
            <Route exact path="/checkout" component={CheckOut}/>
            <Route exact path="/checkout/orderconfirm" component={OrderConfirm} />
-           <Route exact path="/order/:email" component={UserOrderHistory}/>
+           <ProtectedRoutesUser exact path="/order/:email" component={UserOrderHistory}/>
 
-           <Route exact path="/orders" component={Orders}/>
-           <Route exact path="/users" component={Users} />
+           <ProtectedRoutesAdmin exact path="/orders" component={Orders}/>
+           <ProtectedRoutesAdmin exact path="/users" component={Users} />
+           <ProtectedRoutesAdmin exact path="/users/add-user" component={AddUser} />
+           <ProtectedRoutesAdmin exact path="/users/change-user/:email" component={ChangeUser} />
            
          </Switch>
        </div>
