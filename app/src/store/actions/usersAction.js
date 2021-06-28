@@ -25,7 +25,7 @@ export const loading = () => {
   }
   
   export const success = (users) => {
-    console.log(users)
+    // console.log(users)
     return {
       type: actiontypes().users.success,
       payload: users

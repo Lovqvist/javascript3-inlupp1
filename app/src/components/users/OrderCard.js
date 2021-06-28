@@ -18,14 +18,13 @@ const OrderCard = ({order}) => {
    
     const updateOrder = () => {
         dispatch(updateUserOrder(order._id, order))  
-        console.log(order._id)
         history.push('/orders')  
      }
 
     return (
         <div className="row py-3 m-auto border-bottom align-items-center">
             <div className="col">{date} {time}</div>
-            <div className="col">{order._id} </div>
+            <div className="col">{order._id} <br />{order.email} </div>
             <div className="col"> 
             {
              list && list.map(product => (

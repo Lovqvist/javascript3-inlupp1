@@ -13,9 +13,7 @@ export const login = user => {
     axios.get(`http://localhost:8888/api/users/${email}`)
     
     .then(res => {
-      
       dispatch(success({user, admin: res.data.admin}))
-      console.log(user) 
     })
     
     .catch(err => {

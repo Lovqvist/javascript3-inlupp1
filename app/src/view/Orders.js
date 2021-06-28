@@ -17,9 +17,9 @@ const Order = () => {
     <div className="container mt-3 ">
         <h2>Ordrar</h2>
         <div className="mt-5 " >
-            <div className="row font-weight-bold m-auto">
+            <div className="row font-weight-bold py-3 m-auto border-bottom align-items-center">
                 <div className="col">Skapad</div>
-                <div className="col">id</div>
+                <div className="col">Order id / Email</div>
                 <div className="col">Artiklar</div>
                 <div className="col">Status</div>
         </div>

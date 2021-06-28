@@ -48,7 +48,6 @@ export const getUser = email => {
       }
       
       export const success = (user) => {
-        console.log(user)
         return {
           type: actiontypes().user.success,
           payload: user

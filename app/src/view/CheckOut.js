@@ -1,7 +1,7 @@
 import { useSelector, useDispatch} from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import ShoppingCartProduct from '../components/shoppingCart/ShoppingCartProduct'
-import { clearOrder, placeOrder } from '../store/actions/userOrderAction'
+import { placeOrder } from '../store/actions/userOrderAction'
 import { useHistory } from 'react-router-dom'
 
 const CheckOut = () => {

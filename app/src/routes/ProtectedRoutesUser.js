@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 
 export const ProtectedRoutesUser = ({component: Component, ...rest}) => {
     const loggedIn = useSelector(state => state.auth.userEmail);
-    const admin = useSelector(state => state.auth.admin);
 
     return (
         <Route {...rest} render={props => {

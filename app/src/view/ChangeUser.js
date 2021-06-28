@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addUser } from '../store/actions/authActions'
 import { useHistory, useParams } from 'react-router'
 import { deleteUser, updateUser, getUser} from '../store/actions/userAction'
 

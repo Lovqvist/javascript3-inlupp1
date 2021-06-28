@@ -9,7 +9,7 @@ const UserCard = ({user}) => {
     let history = useHistory()
     const dispatch = useDispatch()
     let admin = user.admin
-    console.log(user.admin)
+    // console.log(user.admin)
     
     
     const changeAdmin = () => {
