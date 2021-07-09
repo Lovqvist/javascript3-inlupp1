@@ -86,7 +86,8 @@ exports.registerUser = (req, res) => {
                 res.status(201).json({
                     statusCode: 201,
                     status: true,
-                    message: 'User created successfully'
+                    message: 'User created successfully',
+                    token: auth.generateToken(newUser)
                 })
             })
             .catch(() => {
@@ -101,7 +102,6 @@ exports.registerUser = (req, res) => {
 }
 
 exports.loginUser = (req, res) => {
-    console.log('hej')
     User.findOne({ email: req.body.email })
         .then(user => {
             if(!user) {
@@ -140,8 +140,8 @@ exports.loginUser = (req, res) => {
 }
 
 exports.updateUser = (req, res) => {
-    User.exists({email: req.params.email}, (err, result) =>{                                      //KOLLAR OM PRODUKTEN FINNS. RESULT = TRUE/FALSE
-        if(err) {                                                                               // Fel som kommer om vi använder för få tecken i id
+    User.exists({email: req.params.email}, (err, result) =>{                                      
+        if(err) {                                                                               
             return res.status(400).json({
                 statusCode: 400,
                 status: false,

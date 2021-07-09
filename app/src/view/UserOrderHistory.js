@@ -23,7 +23,7 @@ const UserOrderHistory = () => {
         <div className="mt-5 " >
             <div className="row font-weight-bold m-auto">
                 <div className="col">Skapad</div>
-                <div className="col">id</div>
+                <div className="col">Id / Email</div>
                 <div className="col">Artiklar</div>
                 <div className="col">Status</div>
         </div>

@@ -7,6 +7,7 @@ import { getUsers } from './usersAction';
 const apiCall = (url, data, dispatch) => {
   axios.post(url, data)
   .then(res => {
+    console.log(res.data)
     dispatch(checkAdmin(res.data.token))
   })
   .catch(err => {
@@ -24,13 +25,10 @@ export const login = user => {
 export const checkAdmin = token => {
   return dispatch => {
     localStorage.setItem('token', token)
-    // console.log(token)
-    const id = jwt.decode(token).id;
-    console.log(`http://localhost:8888/api/users/${id}`)
+    const id = jwt.decode(token).id; 
     axios.get(`http://localhost:8888/api/users/${id}`)
     
-    .then(res => {
-      console.log(res)
+    .then(res => { 
       dispatch(success({token, admin: res.data.admin, email: res.data.email}))
     })
   }
@@ -66,11 +64,7 @@ export const logout = () => {
 
 
 export const success = ({token, admin, email}) => {
-  console.log(email)
-  console.log(admin)
-  console.log(token)
   return {
-    
 
     type: actiontypes().auth.success,
     payload: {token, admin, email}
