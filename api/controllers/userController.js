@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userModel = require('../models/users/userModel')
 
-router.get('/:email', userModel.getOneUser)
+router.get('/:id', userModel.getOneUser)
 router.get('/', userModel.getAllUsers)
 
 router.post('/register', userModel.registerUser);

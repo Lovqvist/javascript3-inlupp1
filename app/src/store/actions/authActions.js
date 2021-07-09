@@ -1,42 +1,45 @@
 import actiontypes from '../actiontypes';
+import jwt  from 'jsonwebtoken';
 import axios from 'axios'
 import { getUsers } from './usersAction';
 
 
+const apiCall = (url, data, dispatch) => {
+  axios.post(url, data)
+  .then(res => {
+    dispatch(checkAdmin(res.data.token))
+  })
+  .catch(err => {
+    dispatch(failure(err.message))
+  })
+}
 
 export const login = user => {
   return dispatch => {
-    const email = user.email
     dispatch(loading())
-    axios.post('http://localhost:8888/api/users/login', user)
-    // console.log(email)
-    axios.get(`http://localhost:8888/api/users/${email}`)
+    apiCall('http://localhost:8888/api/users/login', user, dispatch)
+  }
+}
+
+export const checkAdmin = token => {
+  return dispatch => {
+    localStorage.setItem('token', token)
+    // console.log(token)
+    const id = jwt.decode(token).id;
+    console.log(`http://localhost:8888/api/users/${id}`)
+    axios.get(`http://localhost:8888/api/users/${id}`)
     
     .then(res => {
-      dispatch(success({user, admin: res.data.admin}))
-    })
-    
-    .catch(err => {
-      dispatch(failure(err.message))
+      console.log(res)
+      dispatch(success({token, admin: res.data.admin, email: res.data.email}))
     })
   }
 }
 
-
 export const register = (user) => {
     return dispatch => {
         dispatch(loading())
-        axios.post('http://localhost:8888/api/users/register', user)
-        const email = user.email
-        // console.log(email)
-        axios.get(`http://localhost:8888/api/users/${email}`)
-        
-        .then(res => { 
-          dispatch(success({user, admin: user.admin}))
-    })  
-        .catch(err => {
-          dispatch(failure(err.message))
-        })
+        apiCall('http://localhost:8888/api/users/register', user, dispatch)
     }
 }
 
@@ -62,12 +65,15 @@ export const logout = () => {
 
 
 
-export const success = ({user, admin}) => {
-  
+export const success = ({token, admin, email}) => {
+  console.log(email)
+  console.log(admin)
+  console.log(token)
   return {
     
+
     type: actiontypes().auth.success,
-    payload: {user, admin}
+    payload: {token, admin, email}
   }
 }
 

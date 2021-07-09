@@ -1,6 +1,9 @@
+import jwt from "jsonwebtoken";
 import actiontypes from "../actiontypes";
 
 const initState = {
+    userId: null,
+    userToken: null,
     userEmail: '',
     loading: false,
     error: undefined,
@@ -19,8 +22,9 @@ const authReducer = (state = initState, action) => {
         case actiontypes().auth.success:
             return {
                 ...state,
-                userId: action.payload.user._id,
-                userEmail: action.payload.user.email,
+                userId: jwt.decode(action.payload.token).id,
+                userToken: action.payload.token,
+                userEmail: action.payload.email,
                 admin: action.payload.admin,
                 loading: false,
                 error: undefined
@@ -33,12 +37,6 @@ const authReducer = (state = initState, action) => {
                  error: action.payload
              }   
 
-        // case actiontypes().auth.update:
-        //     return{
-        //     ...state,
-        //     admin: action.payload.admin
-        //     }       
-        
         case actiontypes().auth.logout:
                return {
                 ...initState

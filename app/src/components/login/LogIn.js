@@ -29,7 +29,7 @@ const LogIn = ({setLogin}) => {
                 <label htmlFor="password" className="form-label ">Lösenord</label>
                 <input type="password" id="password" className="form-control" value={password} onChange={ e => setPassword(e.target.value)} />
             </div>
-            <h6 className="text-danger" >Felmeddelande</h6>
+            {/* <h6 className="text-danger" >Felmeddelande</h6> */}
             <button className="btn btn-grey btn-block">Logga in</button>
 
             <div className="text-center">

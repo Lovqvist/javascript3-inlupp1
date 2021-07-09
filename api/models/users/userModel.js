@@ -3,15 +3,32 @@ const User = require('../users/userSchema');
 const bcrypt = require('bcrypt');
 const auth = require('../../authentication/auth')
 
-exports.getOneUser = (req, res) => {
-                                                                           
-    User.findOne({email: req.params.email})                 
-        .then(data => res.status(200).json(data))
-        .catch(err => res.status(500).json({
-            statusCode: 500,
-            status: false,
-            message: err.message || 'Something went wrong when fetching the user'
-        }))
+exports.getOneUser = (req, res) => {                                                 
+    User.exists({ _id: req.params.id }, (err, result) => {
+        if(err){
+            return res.status(400).json({
+                statusCode: 400,
+                status: false,
+                message: 'You made a bad request'
+            })
+        }
+        if(result){
+            User.findById(req.params.id)
+            .then(data => res.status(200).json(data))
+            .catch(err => res.status(500).json({
+                statusCode: 500,
+                status: false,
+                message: err.message
+            }))
+        }
+        else{
+            res.status(404).json({
+                statusCode: 404,
+                status: false,
+                message: 'User does not exist'
+            })
+        }
+    })
 } 
 
 exports.getAllUsers = (req, res) => {
@@ -84,6 +101,7 @@ exports.registerUser = (req, res) => {
 }
 
 exports.loginUser = (req, res) => {
+    console.log('hej')
     User.findOne({ email: req.body.email })
         .then(user => {
             if(!user) {
